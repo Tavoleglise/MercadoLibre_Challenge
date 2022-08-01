@@ -1,0 +1,16 @@
+.product {
+  background-color: #fff;
+  padding: 32px;
+  width: 100%;
+  .picture_data_section {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    .picture_section {
+      width: 680px;
+    }
+    .data_section {
+      width: 30%;
+    }
+  }
+}

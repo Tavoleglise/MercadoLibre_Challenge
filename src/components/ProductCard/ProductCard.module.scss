@@ -1,0 +1,40 @@
+.card {
+  display: flex;
+  padding: 16px 0 16px 0;
+  border-bottom: 1px solid #eee;
+  .image {
+    margin: 0 16px 0 16px;
+    border-radius: 4px;
+    height: 180px;
+  }
+  .info {
+    padding-top: 16px;
+    display: grid;
+    grid-template-columns: auto auto;
+    .mainInfo {
+      width: 400px;
+      .price_container {
+        .price {
+          font-size: 24px;
+          &:before {
+            content: "$ ";
+          }
+        }
+        .freeShippingImg {
+          margin-left: 5px;
+        }
+      }
+
+      .description {
+        font-size: 18px;
+        margin-top: 32px;
+      }
+    }
+    .place {
+      width: 400px;
+      display: flex;
+      justify-content: flex-end;
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.tagsContainer {
+  font-size: 14px;
+  margin: 16px 0 16px 0;
+  display: flex;
+  .graterThan {
+    display: flex;
+    align-items: center;
+    width: 7px;
+    margin: 0 10px 0 10px;
+  }
+}
