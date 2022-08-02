@@ -1,13 +1,33 @@
+import { useEffect, useState } from "react";
 import styles from "./SearchBar.module.scss";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export default function SearchBar() {
+  const [path, pushLocation] = useLocation();
+  const [keyword, setKeyword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    pushLocation(`/search/${keyword}`);
+  };
+
+  const handleChange = (event) => {
+    setKeyword(event.target.value);
+  };
+
   return (
     <div className={styles.searchBar}>
       <Link to="/">
         <img src="https://i.imgur.com/W7HEIne.png" alt="" />
       </Link>
-      <input type="text" placeholder="Nunca dejes de buscar" />
+      <form onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          value={keyword}
+          type="text"
+          placeholder="Nunca dejes de buscar"
+        />
+      </form>
     </div>
   );
 }

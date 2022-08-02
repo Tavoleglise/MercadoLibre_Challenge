@@ -3,11 +3,11 @@ import SearchTags from "../SearchTags";
 import ProductCard from "../ProductCard";
 import styles from "./SearchList.module.scss";
 
-export default function SearchList({ query }) {
+export default function SearchList({ queryResults }) {
   useEffect(() => {}, []);
   return (
     <div className={styles.list}>
-      {query.results.map((product) => {
+      {queryResults.items.map((product) => {
         return <ProductCard product={product} />;
       })}
     </div>

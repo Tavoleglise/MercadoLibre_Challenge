@@ -1,5 +1,7 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
+app.use(cors());
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
@@ -49,6 +51,7 @@ app.get("/api/items/:id", (req, res) => {
         const item = {
           id: id,
           title: data.title,
+          picture: data.pictures[0],
           price: {
             price: data.price,
             currency: data.currency_id,
@@ -57,7 +60,7 @@ app.get("/api/items/:id", (req, res) => {
         };
         const info = {
           author: { name: "Gustavo", lastname: "LEglise" },
-          items: item,
+          item: item,
         };
 
         res.status(200).send(info);

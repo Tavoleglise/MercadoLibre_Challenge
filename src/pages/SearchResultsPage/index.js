@@ -6,20 +6,30 @@ import styles from "./SearchResultsPage.module.scss";
 
 import CategoriesContext from "../../context/categoriesContext";
 
-export default function SearchResult() {
+export default function SearchResult({ params }) {
   const categoriesContext = useContext(CategoriesContext);
   const { searchCategories, setSearchCategories } = categoriesContext;
-  const categories = query.filters[0].values[0].path_from_root;
+  //const categories = query.filters[0].values[0].path_from_root;
+  const [keyword, setKeyword] = useState([]);
+  const [queryResults, setQueryResults] = useState([]);
+
+  const { query } = params;
+
   useEffect(() => {
-    setSearchCategories(categories);
-  }, []);
+    fetch(`http://localhost:3002/api/items?q=${query}`)
+      .then((res) => res.json())
+      .then((response) => {
+        setQueryResults(response);
+      });
+    //setSearchCategories(categories);
+  }, [query]);
   useEffect(() => {
-    console.log(searchCategories);
-  }, [searchCategories]);
+    console.log(queryResults);
+  }, [queryResults]);
   return (
     <div className={styles.search_results_page}>
-      <SearchTags categories={categories} />
-      <SearchList query={query} />
+      {/*<SearchTags categories={categories} />*/}
+      {queryResults.items ? <SearchList queryResults={queryResults} /> : null}
     </div>
   );
 }

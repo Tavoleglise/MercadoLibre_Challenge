@@ -5,19 +5,22 @@ import styles from "./ProductPage.module.scss";
 
 import CategoriesContext from "../../context/categoriesContext";
 
-export default function ProductPage() {
-  const [description, setDescription] = useState("");
+export default function ProductPage({ params }) {
+  const { id } = params;
   const categoriesContext = useContext(CategoriesContext);
   const { searchCategories, setSearchCategories } = categoriesContext;
-  const getDescription = () => {
-    fetch(`https://api.mercadolibre.com/items/${product.id}/description`)
+  const [product, setProduct] = useState({});
+
+  const getProduct = () => {
+    fetch(`http://localhost:3002/api/items/${id}`)
       .then((res) => res.json())
       .then((res) => {
-        setDescription(res.plain_text);
+        console.log(res);
+        setProduct(res);
       });
   };
   useEffect(() => {
-    getDescription();
+    getProduct();
   }, []);
 
   function formatMoney(n) {
@@ -26,31 +29,39 @@ export default function ProductPage() {
   return (
     <>
       <SearchTags categories={searchCategories} />
-      <div className={styles.product}>
-        <div className={styles.picture_data_section}>
-          <img
-            className={styles.picture_section}
-            src={product.pictures[0].url}
-            alt=""
-          />
-          <div className={styles.data_section}>
-            <div className={styles.features}>
-              <span>{product.condition === "new" ? "Nuevo" : "Usado"}</span>
-              <span> - </span>
-              <span>{product.sold_quantity} vendidos</span>
+      {product.item ? (
+        <div className={styles.product}>
+          <div className={styles.picture_data_section}>
+            <img
+              className={styles.picture_section}
+              src={product.item.picture.url}
+              alt=""
+            />
+            <div className={styles.data_section}>
+              <div className={styles.features}>
+                <span>
+                  {product.item.condition === "new" ? "Nuevo" : "Usado"}
+                </span>
+                <span> - </span>
+                <span>{product.sold_quantity} vendidos</span>
+              </div>
+              <div className={styles.title}>{product.item.title}</div>
+              <div className={styles.price}>
+                {formatMoney(product.item.price.price)}
+              </div>
+              <button className={styles.button}>Comprar</button>
             </div>
-            <div className={styles.title}>{product.title}</div>
-            <div className={styles.price}>{formatMoney(product.price)}</div>
-            <button className={styles.button}>Comprar</button>
+          </div>
+          <div className={styles.description}>
+            <div className={styles.description_title}>
+              Descripción del producto
+            </div>
+            <div className={styles.description_body}>
+              {product.item.description}
+            </div>
           </div>
         </div>
-        <div className={styles.description}>
-          <div className={styles.description_title}>
-            Descripción del producto
-          </div>
-          <div className={styles.description_body}>{description}</div>
-        </div>
-      </div>
+      ) : null}
     </>
   );
 }
