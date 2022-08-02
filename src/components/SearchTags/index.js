@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styles from "./SearchTags.module.scss";
 import { FaGreaterThan } from "react-icons/fa";
 
 export default function SearchTags({ categories }) {
   useEffect(() => {}, []);
+
   return (
     <div className={styles.tagsContainer}>
       {categories.map((categorie, index) => {

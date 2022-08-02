@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
   };
 
   useEffect(() => {
-    console.log(product);
+    //console.log(product);
   }, [product]);
   function formatMoney(n) {
     return (Math.round(n * 100) / 100).toLocaleString();

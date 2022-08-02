@@ -10,7 +10,44 @@
       width: 680px;
     }
     .data_section {
-      width: 30%;
+      .features {
+        font-size: 14px;
+      }
+      .title {
+        margin-top: 16px;
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .price {
+        margin: 32px 0;
+        font-size: 46px;
+        &:before {
+          content: "$ ";
+        }
+
+        &:after {
+          content: ".00";
+          font-size: 18px;
+        }
+      }
+      .button {
+        background-color: #3483fa;
+        border: none;
+        color: #fff;
+        width: 300px;
+        height: 50px;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+    }
+  }
+  .description {
+    .description_title {
+      font-size: 28px;
+    }
+    .description_body {
+      font-size: 16px;
+      margin: 32px 0;
     }
   }
 }
