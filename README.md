@@ -12,8 +12,9 @@ In the server folder, run:
 
 Available endpoints:
 
-'http://localhost:3002/api/items?search='
-'http://localhost:3002/api/items/:id'
+Port Used : 3002 <br />
+/api/items?search= <br />
+/api/items/:id <br />
 
 In the main directory, run:
 
