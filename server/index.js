@@ -43,7 +43,6 @@ app.get("/api/items/:id", (req, res) => {
   fetch(`https://api.mercadolibre.com/items/${id}`).then(async (response) => {
     const data = await response.json();
 
-    console.log(data);
     fetch(`https://api.mercadolibre.com/items/${id}/description`).then(
       async (response) => {
         const description = await response.json();
@@ -74,5 +73,5 @@ app.get("/api/items/:id", (req, res) => {
 
 const port = 3002;
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });

@@ -3,6 +3,7 @@ import product from "../../utils/product.json";
 import SearchTags from "../../components/SearchTags";
 import styles from "./ProductPage.module.scss";
 import { useSingleProduct } from "../../hooks/useSingleProduct";
+import LoadingComp from "../../components/LoadingComp";
 
 import CategoriesContext from "../../context/categoriesContext";
 
@@ -54,7 +55,7 @@ export default function ProductPage({ params }) {
           </div>
         </div>
       ) : (
-        "Loading"
+        <LoadingComp />
       )}
     </>
   );

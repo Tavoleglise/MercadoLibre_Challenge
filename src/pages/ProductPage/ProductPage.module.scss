@@ -13,15 +13,18 @@
       margin: 0 0 0 32px;
       .features {
         font-size: 14px;
+        color: #999;
       }
       .title {
         margin-top: 16px;
         font-size: 24px;
         font-weight: 600;
+        color: #333;
       }
       .price {
         margin: 32px 0;
         font-size: 46px;
+        color: #333;
         &:before {
           content: "$ ";
         }
@@ -29,6 +32,7 @@
         &:after {
           content: ".00";
           font-size: 18px;
+          vertical-align: super;
         }
       }
       .button {
@@ -45,10 +49,13 @@
   .description {
     .description_title {
       font-size: 28px;
+      font-weight: 400;
     }
     .description_body {
       font-size: 16px;
-      margin: 32px 0;
+      margin-top: 32px;
+      color: #999;
+      width: 70%;
     }
   }
 }

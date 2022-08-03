@@ -1,26 +1,24 @@
 import { useState, useEffect, useContext } from "react";
 import styles from "./SearchTags.module.scss";
 import { FaGreaterThan } from "react-icons/fa";
+import { Link } from "wouter";
 
 export default function SearchTags({ categories }) {
   const [tags, setTags] = useState([]);
   useEffect(() => {
     setTags(categories);
-    console.log(tags);
   }, [categories]);
-
-  useEffect(() => {
-    //console.log(tags);
-  }, [tags]);
 
   return tags ? (
     <div className={styles.tagsContainer}>
       {categories.map((categorie, index) => {
         if (categories.length === 1) {
           return (
-            <span>
-              <strong>{categorie.name}</strong>
-            </span>
+            <Link to={`/search/${categorie.name}`}>
+              <span className={styles.tags}>
+                <strong>{categorie.name}</strong>
+              </span>
+            </Link>
           );
         } else if (index === categories.length - 1) {
           return (
@@ -28,9 +26,12 @@ export default function SearchTags({ categories }) {
               <span className={styles.graterThan}>
                 <FaGreaterThan />
               </span>
-              <span>
-                <strong>{categorie.name}</strong>
-              </span>
+
+              <Link to={`/search/${categorie.name}`}>
+                <span className={styles.tags}>
+                  <strong>{categorie.name}</strong>
+                </span>
+              </Link>
             </>
           );
         } else if (index > 0) {
@@ -39,11 +40,17 @@ export default function SearchTags({ categories }) {
               <span className={styles.graterThan}>
                 <FaGreaterThan />
               </span>
-              <span>{categorie.name}</span>
+              <Link to={`/search/${categorie.name}`}>
+                <span className={styles.tags}>{categorie.name}</span>
+              </Link>
             </>
           );
         } else {
-          return <span>{categorie.name}</span>;
+          return (
+            <Link to={`/search/${categorie.name}`}>
+              <span className={styles.tags}>{categorie.name}</span>
+            </Link>
+          );
         }
       })}
     </div>

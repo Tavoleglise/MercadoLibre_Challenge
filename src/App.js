@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route } from "wouter";
+import { Route, Switch } from "wouter";
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
@@ -15,9 +15,12 @@ function App() {
         <SearchBar />
 
         <section className="App-content">
-          <Route path="/" component={Home} />
-          <Route path="/search/:query" component={SearchResultsPage} />
-          <Route path="/product/:id" component={ProductPage} />
+          <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/search/:query" component={SearchResultsPage} />
+            <Route path="/items/:id" component={ProductPage} />
+            <Route>404 page not found</Route>
+          </Switch>
         </section>
       </CategoriesContextProvider>
     </div>

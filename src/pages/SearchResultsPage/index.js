@@ -2,6 +2,7 @@ import SearchTags from "../../components/SearchTags";
 import SearchList from "../../components/SearchList";
 import styles from "./SearchResultsPage.module.scss";
 import { useSearch } from "../../hooks/useSearch";
+import LoadingComp from "../../components/LoadingComp";
 
 export default function SearchResult({ params }) {
   const { query } = params;
@@ -13,7 +14,7 @@ export default function SearchResult({ params }) {
       {queryResults.items ? (
         <SearchList queryResults={queryResults} />
       ) : (
-        "loading"
+        <LoadingComp />
       )}
     </div>
   );

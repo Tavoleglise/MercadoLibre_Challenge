@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
     return (Math.round(n * 100) / 100).toLocaleString();
   }
   return (
-    <Link to={`/product/${product.id}`}>
+    <Link to={`/items/${product.id}`}>
       <div className={styles.card}>
         <img className={styles.image} src={product.picture} alt="" />
 
