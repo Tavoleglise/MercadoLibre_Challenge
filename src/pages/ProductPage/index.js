@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import product from "../../utils/product.json";
 import SearchTags from "../../components/SearchTags";
 import styles from "./ProductPage.module.scss";
+import { useSingleProduct } from "../../hooks/useSingleProduct";
 
 import CategoriesContext from "../../context/categoriesContext";
 
@@ -9,19 +10,7 @@ export default function ProductPage({ params }) {
   const { id } = params;
   const categoriesContext = useContext(CategoriesContext);
   const { searchCategories, setSearchCategories } = categoriesContext;
-  const [product, setProduct] = useState({});
-
-  const getProduct = () => {
-    fetch(`http://localhost:3002/api/items/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        setProduct(res);
-      });
-  };
-  useEffect(() => {
-    getProduct();
-  }, []);
+  const { product } = useSingleProduct(id);
 
   function formatMoney(n) {
     return (Math.round(n * 100) / 100).toLocaleString();
@@ -43,7 +32,10 @@ export default function ProductPage({ params }) {
                   {product.item.condition === "new" ? "Nuevo" : "Usado"}
                 </span>
                 <span> - </span>
-                <span>{product.sold_quantity} vendidos</span>
+                <span>
+                  {product.item.sold_quantity}
+                  {product.item.sold_quantity === 1 ? " vendido" : " vendidos"}
+                </span>
               </div>
               <div className={styles.title}>{product.item.title}</div>
               <div className={styles.price}>
@@ -61,7 +53,9 @@ export default function ProductPage({ params }) {
             </div>
           </div>
         </div>
-      ) : null}
+      ) : (
+        "Loading"
+      )}
     </>
   );
 }

@@ -7,7 +7,7 @@ export default function SearchList({ queryResults }) {
   useEffect(() => {}, []);
   return (
     <div className={styles.list}>
-      {queryResults.items.map((product) => {
+      {queryResults.items.slice(0, 4).map((product) => {
         return <ProductCard product={product} />;
       })}
     </div>

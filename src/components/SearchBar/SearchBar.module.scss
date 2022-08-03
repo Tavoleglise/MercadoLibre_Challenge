@@ -7,15 +7,41 @@
   justify-content: center;
   form {
     height: 70%;
+    position: relative;
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 50px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
     input {
       height: 100%;
       width: 1000px;
-      border-radius: 5px;
+      border-radius: 4px;
       border: none;
+      color: #999;
+      font-size: 18px;
+      padding-left: 10px;
+      &::placeholder {
+        color: #999;
+        font-size: 18px;
+      }
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
-  img {
-    margin: 28px;
+  .logo {
+    margin: 28px 28px 28px 0;
+    cursor: pointer;
   }
 }

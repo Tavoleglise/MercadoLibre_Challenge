@@ -3,18 +3,34 @@ import styles from "./SearchTags.module.scss";
 import { FaGreaterThan } from "react-icons/fa";
 
 export default function SearchTags({ categories }) {
-  useEffect(() => {}, []);
+  const [tags, setTags] = useState([]);
+  useEffect(() => {
+    setTags(categories);
+    console.log(tags);
+  }, [categories]);
 
-  return (
+  useEffect(() => {
+    //console.log(tags);
+  }, [tags]);
+
+  return tags ? (
     <div className={styles.tagsContainer}>
       {categories.map((categorie, index) => {
-        if (index === categories.length - 1) {
+        if (categories.length === 1) {
+          return (
+            <span>
+              <strong>{categorie.name}</strong>
+            </span>
+          );
+        } else if (index === categories.length - 1) {
           return (
             <>
               <span className={styles.graterThan}>
                 <FaGreaterThan />
               </span>
-              <span>{categorie.name}</span>
+              <span>
+                <strong>{categorie.name}</strong>
+              </span>
             </>
           );
         } else if (index > 0) {
@@ -31,5 +47,5 @@ export default function SearchTags({ categories }) {
         }
       })}
     </div>
-  );
+  ) : null;
 }

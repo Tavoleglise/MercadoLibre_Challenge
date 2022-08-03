@@ -38,11 +38,7 @@ export default function ProductCard({ product }) {
               ) : null}
             </div>
 
-            <div className={styles.description}>
-              {/*product.attributes.map((attribute) => {
-              return <span>{attribute.value_name} </span>;
-            })*/}
-            </div>
+            <div className={styles.description}>{product.title}</div>
           </div>
           <div className={styles.place}>{product.location}</div>
         </div>

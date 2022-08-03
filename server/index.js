@@ -49,14 +49,17 @@ app.get("/api/items/:id", (req, res) => {
         const description = await response.json();
 
         const item = {
+          condition: data.condition,
+          description: description.plain_text,
+          free_shipping: data.shipping.free_shipping,
           id: id,
+          sold_quantity: data.sold_quantity,
           title: data.title,
           picture: data.pictures[0],
           price: {
             price: data.price,
             currency: data.currency_id,
           },
-          description: description.plain_text,
         };
         const info = {
           author: { name: "Gustavo", lastname: "LEglise" },

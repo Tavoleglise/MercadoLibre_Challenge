@@ -18,7 +18,11 @@ export default function SearchBar() {
   return (
     <div className={styles.searchBar}>
       <Link to="/">
-        <img src="https://i.imgur.com/W7HEIne.png" alt="" />
+        <img
+          className={styles.logo}
+          src="https://i.imgur.com/W7HEIne.png"
+          alt=""
+        />
       </Link>
       <form onSubmit={handleSubmit}>
         <input
@@ -27,6 +31,9 @@ export default function SearchBar() {
           type="text"
           placeholder="Nunca dejes de buscar"
         />
+        <button type="submit">
+          <img src="https://i.imgur.com/koi1cht.png" alt="" />
+        </button>
       </form>
     </div>
   );
